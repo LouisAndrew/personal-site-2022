@@ -12,6 +12,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@astrojs/netlify": "1.0.2",
     "@astrojs/svelte": "1.0.0",
     "@astrojs/tailwind": "1.0.0",
     "@octokit/core": "4.0.5",

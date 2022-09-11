@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@astrojs/netlify': 1.0.2
   '@astrojs/svelte': 1.0.0
   '@astrojs/tailwind': 1.0.0
   '@octokit/core': 4.0.5
@@ -27,6 +28,7 @@ specifiers:
   vitest: 0.23.2
 
 dependencies:
+  '@astrojs/netlify': 1.0.2
   '@astrojs/svelte': 1.0.0_iprco5tylfmvffqgrvqxc46njy
   '@astrojs/tailwind': 1.0.0
   '@octokit/core': 4.0.5
@@ -128,6 +130,13 @@ packages:
       micromark-util-types: 1.0.2
       uvu: 0.5.6
       vfile-message: 3.1.2
+    dev: false
+
+  /@astrojs/netlify/1.0.2:
+    resolution: {integrity: sha512-YkZlieQ75Qv9qkodPJGK1Ieq8Z4rBxcxTSz0nZi4I8WIs3weLaI6aLB7M8Kwn7XLycMDmgqBxUi0KeRWbA4HzQ==}
+    dependencies:
+      '@astrojs/webapi': 1.0.0
+      esbuild: 0.14.54
     dev: false
 
   /@astrojs/prism/1.0.1:
