@@ -8,9 +8,7 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     alias: {
-      "@components": resolve(__dirname, "./src/components"),
-      "@layouts": resolve(__dirname, "./src/layouts"),
-      "@assets": resolve(__dirname, "./src/assets"),
+      "@": resolve(__dirname, "./src"),
     },
   },
 });

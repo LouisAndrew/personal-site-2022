@@ -1,5 +1,6 @@
-import Comp from "@components/Comp.svelte";
 import { render } from "@testing-library/svelte";
+
+import Comp from "@/components/Comp.svelte";
 
 describe("Component", () => {
   it("renders", () => {
