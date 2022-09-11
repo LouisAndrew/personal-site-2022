@@ -7,6 +7,7 @@ specifiers:
   '@octokit/core': 4.0.5
   '@sveltejs/vite-plugin-svelte': 1.0.5
   '@testing-library/svelte': 3.2.1
+  '@types/showdown': 2.0.0
   '@typescript-eslint/eslint-plugin': 5.36.2
   '@typescript-eslint/parser': 5.36.2
   astro: ^1.2.1
@@ -18,9 +19,11 @@ specifiers:
   eslint-plugin-simple-import-sort: 8.0.0
   eslint-plugin-svelte: 2.8.0
   jsdom: 20.0.0
+  ky: 0.31.3
   prettier: 2.7.1
   prettier-plugin-astro: 0.5.4
   prettier-plugin-svelte: 2.7.0
+  showdown: 2.1.0
   svelte: ^3.46.4
   svelte-eslint-parser: 0.18.2
   typescript: 4.8.3
@@ -33,11 +36,14 @@ dependencies:
   '@astrojs/tailwind': 1.0.0
   '@octokit/core': 4.0.5
   astro: 1.2.1
+  ky: 0.31.3
+  showdown: 2.1.0
   svelte: 3.50.1
 
 devDependencies:
   '@sveltejs/vite-plugin-svelte': 1.0.5_svelte@3.50.1+vite@3.1.0
   '@testing-library/svelte': 3.2.1_svelte@3.50.1
+  '@types/showdown': 2.0.0
   '@typescript-eslint/eslint-plugin': 5.36.2_2l2r3i3lm6jysqd4ac3ql4n2mm
   '@typescript-eslint/parser': 5.36.2_itqs5654cmlnjraw6gjzqacppi
   eslint: 8.23.0
@@ -877,6 +883,10 @@ packages:
       '@types/node': 18.7.16
     dev: false
 
+  /@types/showdown/2.0.0:
+    resolution: {integrity: sha512-70xBJoLv+oXjB5PhtA8vo7erjLDp9/qqI63SRHm4REKrwuPOLs8HhXwlZJBJaB4kC18cCZ1UUZ6Fb/PLFW4TCA==}
+    dev: true
+
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: false
@@ -1542,6 +1552,11 @@ packages:
 
   /comma-separated-tokens/2.0.2:
     resolution: {integrity: sha512-G5yTt3KQN4Yn7Yk4ed73hlZ1evrFKXeUW3086p3PRFNp7m2vIjI6Pg+Kgb+oyzhd9F2qdcoj67+y3SdxL5XWsg==}
+    dev: false
+
+  /commander/9.4.0:
+    resolution: {integrity: sha512-sRPT+umqkz90UA8M1yqYfnHlZA7fF6nSphDtxeywPZ49ysjxDQybzk13CL+mXekDRG92skbcqCLVovuCusNmFw==}
+    engines: {node: ^12.20.0 || >=14}
     dev: false
 
   /common-ancestor-path/1.0.1:
@@ -3281,6 +3296,11 @@ packages:
     resolution: {integrity: sha512-b0/9J1O9Jcyik1GC6KC42hJ41jKwdO/Mq8Mdo5sYN+IuRTXs2YFHZC3kZSx6ueusqa95x3wLYe/ytKjbAfGixA==}
     dev: true
 
+  /ky/0.31.3:
+    resolution: {integrity: sha512-YDDQKG0Lt4PFSPZGJI8WKAm5y+1ebbeA306am+4nT7riX13wjNVD5sR/QOKtgsaQaARwrdUHlv0M9kJ1qv+Jug==}
+    engines: {node: '>=14.16'}
+    dev: false
+
   /language-subtag-registry/0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
     dev: true
@@ -4711,6 +4731,13 @@ packages:
       jsonc-parser: 3.2.0
       vscode-oniguruma: 1.6.2
       vscode-textmate: 6.0.0
+    dev: false
+
+  /showdown/2.1.0:
+    resolution: {integrity: sha512-/6NVYu4U819R2pUIk79n67SYgJHWCce0a5xTP979WbNp0FL9MN1I1QK662IDU1b6JzKTvmhgI7T7JYIxBi3kMQ==}
+    hasBin: true
+    dependencies:
+      commander: 9.4.0
     dev: false
 
   /side-channel/1.0.4:

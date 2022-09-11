@@ -17,11 +17,14 @@
     "@astrojs/tailwind": "1.0.0",
     "@octokit/core": "4.0.5",
     "astro": "^1.2.1",
+    "ky": "0.31.3",
+    "showdown": "2.1.0",
     "svelte": "^3.46.4"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "1.0.5",
     "@testing-library/svelte": "3.2.1",
+    "@types/showdown": "2.0.0",
     "@typescript-eslint/eslint-plugin": "5.36.2",
     "@typescript-eslint/parser": "5.36.2",
     "eslint": "8.23.0",
