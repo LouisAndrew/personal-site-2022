@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/LouisAndrew/personal-site-2022/main/.metadata/metadata.schema.json",
+  "title": "Metadata",
+  "description": "Metdata schema for parsing a project to portfolio site from GitHub",
+  "type": "object",
+  "properties": {
+    "projectUrl": {
+      "description": "URL of the github project (only used for external projects). Should point to the main project / orga URL for polyrepo projects",
+      "type": "string"
+    },
+    "type": {
+      "description": "Type of the project (single repository, polyrepository)",
+      "type": "string",
+      "enum": [
+        "single",
+        "polyrepo"
+      ]
+    },
+    "polyrepo": {
+      "description": "Additional information on polyrepo projects",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "deployedUrl": {
+            "description": "URL of the deployed project",
+            "type": "string"
+          },
+          "projectUrl": {
+            "description": "URL of the project repo",
+            "type": "string"
+          },
+          "tag": {
+            "description": "Short description of the repo",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tags": {
+      "description": "Tags for the project",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "moreInfoPath": {
+      "description": "URL to a markdown file that contains more information on the project",
+      "type": "string"
+    },
+    "assets": {
+      "description": "Assets (e.g. screenshots, videos) to be used to showcase the project",
+      "type": "object",
+      "properties": {
+        "images": {
+          "description": "Paths to images (e.g. screenshots) used to showcase the project",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "previewImage": {
+          "description": "Image to be displayed on top of the project overview",
+          "type": "string"
+        },
+        "videos": {
+          "description": "Paths to videos (e.g. recordings) used to showcase the project",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "tags"
+  ]
+}
