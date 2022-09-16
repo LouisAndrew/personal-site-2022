@@ -26,6 +26,7 @@ export const projectDetailsQuery = `
                   name
                   url
                   email
+                  avatarUrl
                 }
               }
             }
