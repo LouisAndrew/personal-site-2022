@@ -1,39 +1,22 @@
 import type { APIContext } from "astro";
 
-import { gql } from "@/backend/github";
-import { projectDetailsQuery } from "@/utils/graphql";
-import type { Edge, RepositoryDetails } from "@/utils/types";
-
-type GithubAPIReturnType = {
-  search: {
-    repositoryCount: number;
-    edges: Edge<RepositoryDetails>[];
-  };
-};
+import { getProjectDetails } from "@/backend/get-project-details";
+import { externalProjects } from "@/utils/external";
 
 export const get = async (context: APIContext) => {
   const { name } = context.params;
-  const externalRepo = false;
-  if (name && !externalRepo) {
-    const queryString = `${name} in:name user:louisandrew`;
+  if (name && typeof name === "string") {
+    const externalProject = externalProjects.find(
+      (external) => external.name === name
+    );
 
-    const {
-      search: { repositoryCount, edges },
-    } = await gql<GithubAPIReturnType>(projectDetailsQuery, {
-      queryString,
-    });
+    const queryString = `${name} in:name user:${
+      externalProject ? externalProject.owner : "louisandrew"
+    }`;
 
-    const repo = edges.pop()?.node;
-    if (repositoryCount === 1 && repo) {
-      if (name === repo.name) {
-        const contentBaseUrl = `https://raw.githubusercontent.com${repo.resourcePath}/${repo.defaultBranchRef.name}`;
-        return new Response(
-          JSON.stringify({
-            ...repo,
-            contentBaseUrl,
-          })
-        );
-      }
+    const projectDetails = await getProjectDetails(queryString, name);
+    if (projectDetails) {
+      return new Response(JSON.stringify(projectDetails));
     }
 
     return new Response(JSON.stringify({ msg: "not found" }), { status: 404 });
