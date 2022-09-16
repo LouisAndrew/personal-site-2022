@@ -1,5 +1,4 @@
 ---
-import { Code } from "astro/components";
 import { Converter } from "showdown";
 
 import Layout from "@/layouts/Layout.astro";
@@ -17,11 +16,5 @@ try {
 ---
 
 <Layout title={(name as string) || ""}>
-  {
-    projectDetails && (
-      <main>
-        <Code code={JSON.stringify(projectDetails, null, 2)} lang="json" />
-      </main>
-    )
-  }
+  {projectDetails && <main>{JSON.stringify(projectDetails, null, 2)}</main>}
 </Layout>
