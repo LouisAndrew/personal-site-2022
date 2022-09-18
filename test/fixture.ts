@@ -33,12 +33,14 @@ export const projectDetails: ProjectDetails = {
       email: "",
       avatarUrl:
         "https://avatars.githubusercontent.com/u/61015467?u=f5708c1ea909d49b9cbc97d506a9c9c910bb80bb&v=4",
+      login: "LouisAndrew",
     },
     {
       name: null,
       url: "https://github.com/etheralmade",
       email: "",
       avatarUrl: "https://avatars.githubusercontent.com/u/72875600?v=4",
+      login: "etheralmade",
     },
   ],
   contentBaseUrl:

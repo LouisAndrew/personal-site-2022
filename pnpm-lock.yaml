@@ -26,6 +26,7 @@ specifiers:
   showdown: 2.1.0
   svelte: ^3.46.4
   svelte-eslint-parser: 0.18.2
+  svelte-icons: 2.1.0
   svelte-preprocess: 4.10.7
   typescript: 4.8.3
   vite: 3.1.0
@@ -40,6 +41,7 @@ dependencies:
   ky: 0.31.3
   showdown: 2.1.0
   svelte: 3.50.1
+  svelte-icons: 2.1.0
 
 devDependencies:
   '@sveltejs/vite-plugin-svelte': 1.0.5_svelte@3.50.1+vite@3.1.0
@@ -4947,6 +4949,10 @@ packages:
       svelte: '>=3.19.0'
     dependencies:
       svelte: 3.50.1
+
+  /svelte-icons/2.1.0:
+    resolution: {integrity: sha512-rHPQjweEc9fGSnvM0/4gA3pDHwyZyYsC5KhttCZRhSMJfLttJST5Uq0B16Czhw+HQ+HbSOk8kLigMlPs7gZtfg==}
+    dev: false
 
   /svelte-preprocess/4.10.7_iprco5tylfmvffqgrvqxc46njy:
     resolution: {integrity: sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw==}

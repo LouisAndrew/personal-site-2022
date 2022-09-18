@@ -33,6 +33,7 @@ export type CollaboratorNode = {
   url: string;
   email: string;
   avatarUrl: string;
+  login: string;
 };
 
 export interface Repository {

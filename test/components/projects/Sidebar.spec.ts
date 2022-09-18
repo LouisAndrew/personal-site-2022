@@ -1,7 +1,6 @@
 import { render, RenderOptions } from "@testing-library/svelte";
 
 import Sidebar from "@/components/projects/Sidebar.svelte";
-import type { Metadata } from "@/utils/types";
 
 import { projectDetails } from "../../fixture";
 
@@ -30,16 +29,13 @@ describe("Projects sidebar", () => {
     expect(el.getAttribute("href")).toEqual(projectDetails.url);
   });
 
-  it.each(projectDetails.collaborators.map(({ url }) => [url]))(
+  it.each(projectDetails.collaborators.map(({ url, login }) => [url, login]))(
     "renders other contributors to the project",
-    (ghUrl) => {
-      const { getAllByText } = renderComponent();
+    (ghUrl, login) => {
+      const { getByText } = renderComponent();
 
-      expect(
-        getAllByText("Visit GitHub profile").filter(
-          (el) => el.getAttribute("href") === ghUrl
-        )
-      ).toHaveLength(1);
+      expect(getByText(login)).toBeTruthy();
+      expect(getByText(login).getAttribute("href")).toEqual(ghUrl);
     }
   );
 

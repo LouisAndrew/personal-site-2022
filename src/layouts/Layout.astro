@@ -11,11 +11,68 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <style lang="postcss" is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+
+      @layer base {
+        main {
+          @apply text-gray-900 dark:text-slate-300 font-mono;
+        }
+
+        svg {
+          @apply !h-6 !w-6 first:mr-3;
+        }
+
+        h1,
+        h2,
+        h3 {
+          @apply font-bold;
+        }
+        h4,
+        h5,
+        h6 {
+          @apply font-semibold;
+        }
+
+        h4 {
+          @apply text-lg;
+        }
+
+        ul {
+          @apply pl-3;
+        }
+
+        li {
+          @apply first:pt-2;
+        }
+      }
+
+      @layer components {
+        .highlight {
+          @apply relative w-max z-0 flex items-center last:mr-3
+                 after:content-[''] 
+                 after:h-0.5 after:bg-transparent after:absolute
+                 after:bottom-0.5 after:w-[calc(100%-30px)] after:right-[-3px]
+                 after:transition-colors hover:after:dark:bg-yellow-100 after:duration-300
+                 after:-z-10;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <slot />
+  <body class="dark">
+    <main class="bg-white dark:bg-zinc-800">
+      <slot />
+    </main>
   </body>
 </html>
