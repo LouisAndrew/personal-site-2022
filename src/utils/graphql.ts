@@ -8,8 +8,8 @@ export const projectDetailsQuery = `
             name
             resourcePath
             url
+            homepageUrl
             defaultBranchRef {
-              id
               name
             }
             languages(first: 20) {

@@ -39,10 +39,17 @@ export const getProjectDetails = async (
           .json<Metadata>();
       } catch {}
 
+      const languages = repo.languages.edges.map(({ node }) => node);
+      const collaborators = repo.collaborators.edges
+        .filter(({ node: { url } }) => url !== "https://github.com/LouisAndrew")
+        .map(({ node }) => node);
+
       return {
         ...repo,
         contentBaseUrl,
         metadata,
+        languages,
+        collaborators,
       };
     }
   }

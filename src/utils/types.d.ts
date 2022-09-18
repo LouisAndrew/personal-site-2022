@@ -1,3 +1,7 @@
+export type Edge<T> = {
+  node: T;
+};
+
 export interface Assets {
   previewImage: string;
   images: string[];
@@ -16,8 +20,20 @@ export interface Metadata {
   projectUrl?: string;
   type: "single" | "polyrepo";
   assets: Assets;
-  polyrepo?: Polyrepo;
+  polyrepo?: Polyrepo[];
 }
+
+export type LanguageNode = {
+  name: string;
+  color: string;
+};
+
+export type CollaboratorNode = {
+  name: string | null;
+  url: string;
+  email: string;
+  avatarUrl: string;
+};
 
 export interface Repository {
   name: string;
@@ -29,6 +45,22 @@ export interface RepositoryDetails extends Repository {
   defaultBranchRef: {
     name: string;
   };
+  homepageUrl: string;
+  languages: {
+    edges: Edge<LanguageNode>[];
+  };
+  collaborators: {
+    edges: Edge<CollaboratorNode>[];
+  };
+}
+
+export interface SanitizedRepositoryDetails
+  extends Pick<
+    RepositoryDetails,
+    "defaultBranchRef" | "resourcePath" | "name" | "url" | "homepageUrl"
+  > {
+  languages: LanguageNode[];
+  collaborators: CollaboratorNode[];
 }
 
 export interface ExternalProject {
@@ -37,11 +69,7 @@ export interface ExternalProject {
   repo: string;
 }
 
-export interface ProjectDetails extends RepositoryDetails {
+export interface ProjectDetails extends SanitizedRepositoryDetails {
   metadata?: Metadata;
   contentBaseUrl: string;
 }
-
-export type Edge<T> = {
-  node: T;
-};

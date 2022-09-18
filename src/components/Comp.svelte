@@ -1,5 +1,5 @@
 <script lang="ts">
-  let count = 0;
+  let count: number = 0;
 
   const handleClick = () => count++;
 </script>
