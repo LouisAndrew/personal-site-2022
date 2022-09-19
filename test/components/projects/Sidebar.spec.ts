@@ -45,7 +45,7 @@ describe("Projects sidebar", () => {
     "renders the tags of the project",
     (tag) => {
       const { getByText } = renderComponent();
-      expect(getByText(tag)).toBeTruthy();
+      expect(getByText(`#${tag}`)).toBeTruthy();
     }
   );
 

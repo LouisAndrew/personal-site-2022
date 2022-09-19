@@ -1,4 +1,5 @@
 ---
+import Header from "@/components/common/Header.svelte";
 export interface Props {
   title: string;
 }
@@ -15,7 +16,7 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=Sora:wght@300;500;700&display=swap"
       rel="stylesheet"
     />
 
@@ -28,27 +29,29 @@ const { title } = Astro.props;
       @tailwind utilities;
 
       @layer base {
+        * {
+          @apply duration-100;
+        }
+
         main {
-          @apply text-gray-900 dark:text-slate-300 font-mono font-thin max-w-screen-xl text-sm;
+          @apply text-gray-900 dark:text-slate-300 font-sora font-light text-base w-[100vw] min-h-screen
+                flex justify-center overflow-x-hidden tracking-wide;
         }
 
-        svg {
-          @apply !h-6 !w-6 first:mr-3;
+        h1 {
+          @apply text-4xl font-sans font-extralight dark:text-white;
         }
 
-        h1,
-        h2,
+        h2 {
+          @apply text-3xl font-sans font-extralight dark:text-white;
+        }
+
         h3 {
-          @apply font-bold;
-        }
-        h4,
-        h5,
-        h6 {
-          /* @apply font-semibold; */
+          @apply text-xl font-bold font-sora text-zinc-600 dark:text-slate-100;
         }
 
         h4 {
-          @apply text-base;
+          @apply mt-5 mb-0.5 font-sora text-lg font-medium;
         }
 
         ul {
@@ -62,7 +65,7 @@ const { title } = Astro.props;
 
       @layer components {
         .highlight {
-          @apply relative flex items-center w-max rounded overflow-hidden px-2 py-1;
+          @apply relative flex items-center w-max text-sm rounded overflow-hidden px-2 py-1;
 
           background-image: linear-gradient(
             to right,
@@ -78,13 +81,62 @@ const { title } = Astro.props;
             @apply dark:text-black;
             background-position: 0;
           }
+
+          svg {
+            @apply !h-6 !w-6 first:mr-3;
+          }
+        }
+
+        .details {
+          h1 {
+            @apply mb-12;
+          }
+
+          h2 {
+            @apply mb-2;
+          }
+
+          h3 {
+            @apply mt-6;
+          }
+
+          ul {
+            @apply pl-6 list-disc;
+
+            & ul {
+              @apply list-square;
+            }
+
+            p {
+              @apply !p-0;
+            }
+          }
+
+          p {
+            @apply py-2;
+          }
+
+          a {
+            @apply duration-200 text-yellow-600 hover:text-yellow-500 dark:text-yellow-100 hover:dark:text-yellow-300;
+          }
+
+          img {
+            @apply py-2 overflow-hidden;
+          }
+
+          code {
+            @apply px-2 py-1 bg-gray-100 dark:bg-gray-900 text-xs rounded overflow-hidden;
+          }
         }
       }
     </style>
   </head>
-  <body class="dark">
+  <body>
     <main class="bg-white dark:bg-zinc-800">
-      <slot />
+      <div class="max-w-sm md:max-w-lg lg:max-w-4xl xl:max-w-7xl py-12">
+        <Header client:only />
+        <slot />
+      </div>
     </main>
   </body>
 </html>

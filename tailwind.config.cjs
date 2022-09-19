@@ -7,7 +7,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mono: "'Fira Code', monospace",
+        sans: "'Raleway', sans-serif",
+        sora: "'Sora', sans-serif",
+      },
+      listStyleType: {
+        square: "square",
       },
     },
   },

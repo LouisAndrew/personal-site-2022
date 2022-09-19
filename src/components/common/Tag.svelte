@@ -14,21 +14,13 @@
     return `rgba(${r}, ${g}, ${b}, 20%)`;
   };
 
-  $: bgColor = hexToRgb(color) ?? "transparent";
+  $: backgroundColor = hexToRgb(color) ?? "transparent";
 </script>
 
 <div
-  style:--color={color}
-  style:--bg-color={bgColor}
-  class="tag text-sm font-bold border-2 border-solid rounded-md px-2 py-1 w-max my-2"
+  style:color
+  style:background-color={backgroundColor}
+  class="tag px-1 text-sm py-0.5 w-max my-2 brightness-75 dark:brightness-150"
 >
-  <slot />
+  #<slot />
 </div>
-
-<style>
-  .tag {
-    border-color: var(--color);
-    color: var(--color);
-    background-color: var(--bg-color);
-  }
-</style>
