@@ -21,10 +21,10 @@ try {
 <Layout title={(name as string) || ""}>
   {
     projectDetails && (
-      <>
-        <main>{JSON.stringify(projectDetails, null, 2)}</main>
+      <div class="flex">
+        <div class="break-words">Hi</div>
         <Sidebar projectDetails={projectDetails} />
-      </>
+      </div>
     )
   }
 </Layout>

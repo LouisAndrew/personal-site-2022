@@ -11,12 +11,14 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -27,7 +29,7 @@ const { title } = Astro.props;
 
       @layer base {
         main {
-          @apply text-gray-900 dark:text-slate-300 font-mono;
+          @apply text-gray-900 dark:text-slate-300 font-mono font-thin max-w-screen-xl text-sm;
         }
 
         svg {
@@ -42,30 +44,40 @@ const { title } = Astro.props;
         h4,
         h5,
         h6 {
-          @apply font-semibold;
+          /* @apply font-semibold; */
         }
 
         h4 {
-          @apply text-lg;
+          @apply text-base;
         }
 
         ul {
-          @apply pl-3;
+          @apply pl-1;
         }
 
         li {
-          @apply first:pt-2;
+          @apply first:pt-1;
         }
       }
 
       @layer components {
         .highlight {
-          @apply relative w-max z-0 flex items-center last:mr-3
-                 after:content-[''] 
-                 after:h-0.5 after:bg-transparent after:absolute
-                 after:bottom-0.5 after:w-[calc(100%-30px)] after:right-[-3px]
-                 after:transition-colors hover:after:dark:bg-yellow-100 after:duration-300
-                 after:-z-10;
+          @apply relative flex items-center w-max rounded overflow-hidden px-2 py-1;
+
+          background-image: linear-gradient(
+            to right,
+            theme("colors.red.300"),
+            theme("colors.blue.500") 50%,
+            transparent 50%
+          );
+          background-size: 220% 100%;
+          background-position: 100%;
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            @apply dark:text-black;
+            background-position: 0;
+          }
         }
       }
     </style>
