@@ -16,7 +16,11 @@ export const get = async (context: APIContext) => {
 
     const projectDetails = await getProjectDetails(queryString, name);
     if (projectDetails) {
-      return new Response(JSON.stringify(projectDetails));
+      return new Response(JSON.stringify(projectDetails), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     }
 
     return new Response(JSON.stringify({ msg: "not found" }), { status: 404 });

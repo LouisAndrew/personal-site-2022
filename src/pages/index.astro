@@ -4,15 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
-    <h1>Welcome to <span class="text-gradient">Astro</span></h1>
+  <h1>Welcome to <span class="text-gradient">Astro</span></h1>
 
-    <Comp client:load />
-  </main>
+  <Comp client:load />
 </Layout>
-
-<style lang="postcss" is:global>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-</style>

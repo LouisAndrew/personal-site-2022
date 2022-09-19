@@ -11,11 +11,80 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <style lang="postcss" is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+
+      @layer base {
+        main {
+          @apply text-gray-900 dark:text-slate-300 font-mono font-thin max-w-screen-xl text-sm;
+        }
+
+        svg {
+          @apply !h-6 !w-6 first:mr-3;
+        }
+
+        h1,
+        h2,
+        h3 {
+          @apply font-bold;
+        }
+        h4,
+        h5,
+        h6 {
+          /* @apply font-semibold; */
+        }
+
+        h4 {
+          @apply text-base;
+        }
+
+        ul {
+          @apply pl-1;
+        }
+
+        li {
+          @apply first:pt-1;
+        }
+      }
+
+      @layer components {
+        .highlight {
+          @apply relative flex items-center w-max rounded overflow-hidden px-2 py-1;
+
+          background-image: linear-gradient(
+            to right,
+            theme("colors.red.300"),
+            theme("colors.blue.500") 50%,
+            transparent 50%
+          );
+          background-size: 220% 100%;
+          background-position: 100%;
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            @apply dark:text-black;
+            background-position: 0;
+          }
+        }
+      }
+    </style>
   </head>
-  <body>
-    <slot />
+  <body class="dark">
+    <main class="bg-white dark:bg-zinc-800">
+      <slot />
+    </main>
   </body>
 </html>

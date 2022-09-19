@@ -1,20 +1,30 @@
 ---
 import { Converter } from "showdown";
 
+import Sidebar from "@/components/projects/Sidebar.svelte";
 import Layout from "@/layouts/Layout.astro";
 import { agent } from "@/utils/agent";
+import type { ProjectDetails } from "@/utils/types";
 
 const { name } = Astro.params;
 const url = `${Astro.url.origin}/api/projects/${name}`;
 
-let projectDetails = null;
+let projectDetails: ProjectDetails | null = null;
 try {
   projectDetails = await agent.get(url).json();
+  console.log(projectDetails);
 } catch {
   return Astro.redirect("/404");
 }
 ---
 
 <Layout title={(name as string) || ""}>
-  {projectDetails && <main>{JSON.stringify(projectDetails, null, 2)}</main>}
+  {
+    projectDetails && (
+      <div class="flex">
+        <div class="break-words">Hi</div>
+        <Sidebar projectDetails={projectDetails} />
+      </div>
+    )
+  }
 </Layout>
