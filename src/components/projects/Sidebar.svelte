@@ -8,7 +8,7 @@
 </script>
 
 <div
-  class="sidebar border-solid border-l border-gray-200 dark:border-gray-700 pl-8 grid grid-cols-1 gap-4"
+  class="sidebar col-span-2 border-solid border-l border-gray-200 dark:border-gray-700 pl-8 grid grid-cols-1 gap-4"
 >
   <div>
     <a class="highlight mb-2" href={projectDetails.homepageUrl} target="_blank">

@@ -9,6 +9,8 @@ export const projectDetailsQuery = `
             resourcePath
             url
             homepageUrl
+            createdAt
+            updatedAt
             defaultBranchRef {
               name
             }
