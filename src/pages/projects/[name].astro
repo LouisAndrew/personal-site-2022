@@ -1,6 +1,5 @@
 ---
-import { Converter } from "showdown";
-
+import Details from "@/components/projects/Details.svelte";
 import Sidebar from "@/components/projects/Sidebar.svelte";
 import Layout from "@/layouts/Layout.astro";
 import { agent } from "@/utils/agent";
@@ -21,10 +20,18 @@ try {
 <Layout title={(name as string) || ""}>
   {
     projectDetails && (
-      <div class="flex">
-        <div class="break-words">Hi</div>
+      <div class="flex flex-col-reverse lg:flex-row items-start">
+        <Details client:load projectDetails={projectDetails} />
         <Sidebar projectDetails={projectDetails} />
       </div>
     )
   }
 </Layout>
+
+<style>
+  .details {
+    svg {
+      @apply !w-2 !h-2;
+    }
+  }
+</style>

@@ -11,6 +11,7 @@ module.exports = {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "prettier/prettier": ["error"],
+    "svelte/no-at-html-tags": "off",
   },
   parserOptions: {
     parser: "@typescript-eslint/parser",
