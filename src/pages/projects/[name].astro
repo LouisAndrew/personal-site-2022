@@ -1,5 +1,6 @@
 ---
 import Details from "@/components/projects/Details.svelte";
+import Hero from "@/components/projects/Hero.svelte";
 import Sidebar from "@/components/projects/Sidebar.svelte";
 import Layout from "@/layouts/Layout.astro";
 import { agent } from "@/utils/agent";
@@ -11,7 +12,6 @@ const url = `${Astro.url.origin}/api/projects/${name}`;
 let projectDetails: ProjectDetails | null = null;
 try {
   projectDetails = await agent.get(url).json();
-  console.log(projectDetails);
 } catch {
   return Astro.redirect("/404");
 }
@@ -20,9 +20,12 @@ try {
 <Layout title={(name as string) || ""}>
   {
     projectDetails && (
-      <div class="flex flex-col-reverse lg:flex-row items-start">
-        <Details client:load projectDetails={projectDetails} />
-        <Sidebar projectDetails={projectDetails} />
+      <div>
+        <Hero projectDetails={projectDetails} />
+        <div class="w-full grid grid-cols-2 md:grid-cols-6 flex-col-reverse lg:flex-row items-start justify-between">
+          <Details client:load projectDetails={projectDetails} />
+          <Sidebar projectDetails={projectDetails} />
+        </div>
       </div>
     )
   }
@@ -34,4 +37,8 @@ try {
       @apply !w-2 !h-2;
     }
   }
+
+  /* .project-main {
+    @apply grid;
+    /* grid-template-rows: auto 1fr; */
 </style>

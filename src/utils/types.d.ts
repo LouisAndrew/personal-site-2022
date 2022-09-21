@@ -43,6 +43,8 @@ export interface Repository {
 
 export interface RepositoryDetails extends Repository {
   resourcePath: string;
+  createdAt: string;
+  updatedAt: string;
   defaultBranchRef: {
     name: string;
   };
@@ -58,7 +60,13 @@ export interface RepositoryDetails extends Repository {
 export interface SanitizedRepositoryDetails
   extends Pick<
     RepositoryDetails,
-    "defaultBranchRef" | "resourcePath" | "name" | "url" | "homepageUrl"
+    | "defaultBranchRef"
+    | "resourcePath"
+    | "name"
+    | "url"
+    | "homepageUrl"
+    | "createdAt"
+    | "updatedAt"
   > {
   languages: LanguageNode[];
   collaborators: CollaboratorNode[];

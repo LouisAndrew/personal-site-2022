@@ -39,7 +39,9 @@
   };
 </script>
 
-<div class="details max-w-sm lg:max-w-xl xl:max-w-3xl mr-16 overflow-hidden">
+<div
+  class="details col-span-2 row-start-2 md:col-span-4 row-start-1 max-w-sm lg:max-w-xl xl:max-w-3xl w-full mr-16 overflow-hidden"
+>
   {#await getContent()}
     <div class="w-screen animate-pulse">
       <div class="h-9 bg-gray-200 dark:bg-gray-700 mb-8" />

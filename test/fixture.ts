@@ -5,6 +5,8 @@ export const projectDetails: ProjectDetails = {
   resourcePath: "/etheralmade/etheral",
   url: "https://github.com/etheralmade/etheral",
   homepageUrl: "https://etheralmade.com",
+  createdAt: "2020-08-21T09:15:18Z",
+  updatedAt: "2022-09-16T07:09:35Z",
   defaultBranchRef: {
     name: "master",
   },
