@@ -31,12 +31,4 @@
       {dateFormatter(projectDetails.updatedAt)}
     </span>
   </div>
-
-  {#if projectDetails.metadata?.assets.previewImage}
-    <img
-      class="w-full mb-12"
-      src={projectDetails.metadata?.assets.previewImage}
-      alt=""
-    />
-  {/if}
 </div>

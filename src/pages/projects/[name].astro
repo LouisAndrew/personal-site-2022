@@ -1,6 +1,7 @@
 ---
 import Details from "@/components/projects/Details.svelte";
 import Hero from "@/components/projects/Hero.svelte";
+import Image from "@/components/projects/Image.svelte";
 import Sidebar from "@/components/projects/Sidebar.svelte";
 import Layout from "@/layouts/Layout.astro";
 import { agent } from "@/utils/agent";
@@ -22,6 +23,7 @@ try {
     projectDetails && (
       <div>
         <Hero projectDetails={projectDetails} />
+        <Image client:load projectDetails={projectDetails} />
         <div class="w-full grid grid-cols-2 md:grid-cols-6 flex-col-reverse lg:flex-row items-start justify-between">
           <Details client:load projectDetails={projectDetails} />
           <Sidebar projectDetails={projectDetails} />
