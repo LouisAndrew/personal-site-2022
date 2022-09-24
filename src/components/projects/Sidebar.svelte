@@ -8,9 +8,13 @@
 </script>
 
 <div
-  class="sidebar col-span-2 border-solid border-l border-gray-200 dark:border-gray-700 pl-8 grid grid-cols-1 gap-4"
+  class={`sidebar col-span-2 border-solid border-l-0 dark:border-gray-700 
+    grid gap-4 grid-cols-2
+    pb-8 border-gray-200 
+    md:border-l md:pl-8 md:grid-cols-1 
+  `}
 >
-  <div>
+  <div class="col-span-2 md:col-span-1">
     <a class="highlight mb-2" href={projectDetails.homepageUrl} target="_blank">
       <IoLogoGithub />
       Visit project
@@ -22,7 +26,7 @@
   </div>
 
   {#if projectDetails.collaborators.length > 0}
-    <div>
+    <div class="col-span-2 md:col-span-1">
       <h4>Collaborators</h4>
       <ul>
         {#each projectDetails.collaborators as collaborator}
