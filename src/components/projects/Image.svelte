@@ -5,10 +5,10 @@
   import { onMount } from "svelte";
   export let projectDetails: ProjectDetails;
 
-  const src = projectDetails.metadata?.assets.previewImage;
+  const src = projectDetails.metadata?.assets.previewImage || "";
 
   let loading = false;
-  let failed = true;
+  let failed = false;
   let opacity = 0;
 
   onMount(() => {

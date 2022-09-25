@@ -9,49 +9,51 @@ import type {
 } from "@/utils/types";
 
 type GithubAPIReturnType = {
-  search: {
-    repositoryCount: number;
-    edges: Edge<RepositoryDetails>[];
-  };
+  repository: RepositoryDetails | null;
 };
 
 export const getProjectDetails = async (
-  queryString: string,
+  owner: string,
   name: string
 ): Promise<ProjectDetails | null> => {
-  const {
-    search: { edges },
-  } = await gql<GithubAPIReturnType>(projectDetailsQuery, {
-    queryString,
-  });
+  try {
+    const { repository: repo } = await gql<GithubAPIReturnType>(
+      projectDetailsQuery,
+      {
+        name,
+        owner,
+      }
+    );
 
-  const repoNode = edges.find((edge) => edge.node.name === name);
-  if (repoNode) {
-    const { node: repo } = repoNode;
+    if (repo) {
+      if (name === repo.name) {
+        const contentBaseUrl = `https://raw.githubusercontent.com${repo.resourcePath}/${repo.defaultBranchRef.name}`;
+        let metadata = undefined;
 
-    if (name === repo.name) {
-      const contentBaseUrl = `https://raw.githubusercontent.com${repo.resourcePath}/${repo.defaultBranchRef.name}`;
-      let metadata = undefined;
+        try {
+          metadata = await agent
+            .get(`${contentBaseUrl}/.metadata/metadata.json`)
+            .json<Metadata>();
+        } catch {}
 
-      try {
-        metadata = await agent
-          .get(`${contentBaseUrl}/.metadata/metadata.json`)
-          .json<Metadata>();
-      } catch {}
+        const languages = repo.languages.edges.map(({ node }) => node);
+        const collaborators = repo.collaborators.edges
+          .filter(
+            ({ node: { url } }) => url !== "https://github.com/LouisAndrew"
+          )
+          .map(({ node }) => node);
 
-      const languages = repo.languages.edges.map(({ node }) => node);
-      const collaborators = repo.collaborators.edges
-        .filter(({ node: { url } }) => url !== "https://github.com/LouisAndrew")
-        .map(({ node }) => node);
-
-      return {
-        ...repo,
-        contentBaseUrl,
-        metadata,
-        languages,
-        collaborators,
-      };
+        return {
+          ...repo,
+          contentBaseUrl,
+          metadata,
+          languages,
+          collaborators,
+        };
+      }
     }
+  } catch {
+    return null;
   }
 
   return null;
