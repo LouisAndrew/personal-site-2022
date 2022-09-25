@@ -1,44 +1,43 @@
 export const projectDetailsQuery = `
-  query ($queryString: String!) {
-    search(query: $queryString, type: REPOSITORY, first: 100) {
-      repositoryCount
-      edges {
-        node {
-          ... on Repository {
+  query ($name: String!, $owner: String!) {
+    repository(name: $name, owner: $owner) {
+      name
+      resourcePath
+      url
+      homepageUrl
+      createdAt
+      updatedAt
+      defaultBranchRef {
+        name
+      }
+      languages(first: 20) {
+        edges {
+          node {
             name
-            resourcePath
+            color
+          }
+        }
+      }
+      collaborators {
+        edges {
+          node {
+            name
             url
-            homepageUrl
-            createdAt
-            updatedAt
-            defaultBranchRef {
-              name
-            }
-            languages(first: 20) {
-              edges {
-                node {
-                  name
-                  color
-                }
-              }
-            }
-            collaborators {
-              edges {
-                node {
-                  name
-                  url
-                  email
-                  avatarUrl
-                  login
-                }
-              }
-            }
+            email
+            avatarUrl
+            login
           }
         }
       }
     }
   }
 `;
+
+// export const getUserRepositories = gql`
+//   query {
+
+//   }
+// `
 
 export const searchProjectsQuery = `
   query {
