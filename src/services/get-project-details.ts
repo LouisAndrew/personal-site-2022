@@ -1,4 +1,4 @@
-import { gql } from "@/backend/github";
+import { gql } from "@/services/github";
 import { agent } from "@/utils/agent";
 import { projectDetailsQuery } from "@/utils/graphql";
 import type {

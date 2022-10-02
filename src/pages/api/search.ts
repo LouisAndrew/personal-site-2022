@@ -1,6 +1,6 @@
 import type { APIContext } from "astro";
 
-import { gql } from "@/backend/github";
+import { gql } from "@/services/github";
 import { searchProjectsQuery } from "@/utils/graphql";
 
 export const get = async (context: APIContext) => {

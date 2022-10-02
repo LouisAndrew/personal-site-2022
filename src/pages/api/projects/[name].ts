@@ -1,6 +1,6 @@
 import type { APIContext } from "astro";
 
-import { getProjectDetails } from "@/backend/get-project-details";
+import { getProjectDetails } from "@/services/get-project-details";
 import { externalProjects } from "@/utils/external";
 
 export const get = async (context: APIContext) => {

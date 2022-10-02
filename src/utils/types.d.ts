@@ -82,3 +82,17 @@ export interface ProjectDetails extends SanitizedRepositoryDetails {
   metadata?: Metadata;
   contentBaseUrl: string;
 }
+
+export interface GitHubRepositoryInfo {
+  name: string;
+  description: string | null;
+  languages: {
+    edges: Edge<LanguageNode>[];
+  };
+}
+
+export interface RepositoryInfo
+  extends Pick<GitHubRepositoryInfo, "name" | "description"> {
+  languages: LanguageNode[];
+  highlight: boolean;
+}

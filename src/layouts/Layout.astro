@@ -39,15 +39,15 @@ const { title } = Astro.props;
         }
 
         h1 {
-          @apply text-4xl font-sans font-extralight dark:text-white;
+          @apply text-4xl font-sans font-extralight dark:text-white mb-12;
         }
 
         h2 {
-          @apply text-3xl font-sans font-extralight dark:text-white;
+          @apply text-3xl font-sans font-extralight dark:text-white mb-2;
         }
 
         h3 {
-          @apply text-xl font-bold font-sora text-zinc-600 dark:text-slate-100;
+          @apply text-xl font-bold font-sora text-zinc-600 dark:text-slate-100 mt-6;
         }
 
         h4 {
@@ -55,11 +55,28 @@ const { title } = Astro.props;
         }
 
         ul {
-          @apply pl-1;
+          @apply pl-6 list-disc;
+
+          & ul {
+            @apply list-square;
+          }
+
+          p {
+            @apply !p-0;
+          }
         }
 
         li {
           @apply first:pt-1;
+        }
+
+        p {
+          @apply py-2;
+        }
+
+        code,
+        pre {
+          @apply px-2 py-1 bg-gray-100 dark:bg-gray-900 text-xs rounded overflow-hidden;
         }
       }
 
@@ -81,52 +98,18 @@ const { title } = Astro.props;
             @apply dark:text-black;
             background-position: 0;
           }
-
           svg {
             @apply !h-6 !w-6 first:mr-3;
           }
         }
 
         .details {
-          h1 {
-            @apply mb-12;
-          }
-
-          h2 {
-            @apply mb-2;
-          }
-
-          h3 {
-            @apply mt-6;
-          }
-
-          ul {
-            @apply pl-6 list-disc;
-
-            & ul {
-              @apply list-square;
-            }
-
-            p {
-              @apply !p-0;
-            }
-          }
-
-          p {
-            @apply py-2;
-          }
-
           a {
             @apply duration-200 text-yellow-600 hover:text-yellow-500 dark:text-yellow-100 hover:dark:text-yellow-300;
           }
 
           img {
             @apply py-2 overflow-hidden;
-          }
-
-          code,
-          pre {
-            @apply px-2 py-1 bg-gray-100 dark:bg-gray-900 text-xs rounded overflow-hidden;
           }
         }
       }

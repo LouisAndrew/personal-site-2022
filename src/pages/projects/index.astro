@@ -1,0 +1,69 @@
+---
+import Card from "@/components/project-info/Card.svelte";
+import Layout from "@/layouts/Layout.astro";
+import { agent } from "@/utils/agent";
+import type { RepositoryInfo } from "@/utils/types";
+
+const baseUrl = `${Astro.url.origin}`;
+const url = `${baseUrl}/api/projects`;
+
+const repos: RepositoryInfo[] = await agent.get(url).json();
+const highlights = repos.filter((repo) => repo.highlight);
+const others = repos.filter((repo) => !repo.highlight);
+
+const thisProjectInfo: RepositoryInfo = {
+  description:
+    "This personal portfolio site showcases my skill and how I works. Please click on this card to read more details on how this site is made.",
+  name: "This project!",
+  highlight: true,
+  languages: [],
+};
+---
+
+<Layout title="My projects">
+  <div>
+    <h1>My Projects</h1>
+
+    <h2>Highlights</h2>
+    <p>
+      These projects are some of the projects that I want to particularly
+      showcase
+    </p>
+    <div class="projects-grid mb-20">
+      <a
+        class="col-span-1 sm:col-span-2 lg:col-span-3"
+        href={`${baseUrl}/projects/this-project`}
+      >
+        <Card repositoryInfo={thisProjectInfo} />
+      </a>
+      {
+        highlights.map((repo) => (
+          <a href={`${baseUrl}/projects/${repo.name}`}>
+            <Card repositoryInfo={repo} />
+          </a>
+        ))
+      }
+    </div>
+
+    <h2>Other projects</h2>
+    <p>
+      These are the additional projects I were working on. These projects are
+      often experimental and act as a way for me to learn new things.
+    </p>
+    <div class="projects-grid">
+      {
+        others.map((repo) => (
+          <a href={`${baseUrl}/projects/${repo.name}`}>
+            <Card repositoryInfo={repo} />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
+
+<style scoped lang="postcss">
+  .projects-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+</style>

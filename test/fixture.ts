@@ -1,4 +1,4 @@
-import type { ProjectDetails } from "@/utils/types";
+import type { ProjectDetails, RepositoryInfo } from "@/utils/types";
 
 export const projectDetails: ProjectDetails = {
   name: "etheral",
@@ -65,3 +65,47 @@ export const projectDetails: ProjectDetails = {
     },
   },
 };
+
+export const repoInfos: RepositoryInfo[] = [
+  {
+    name: "vid2gif",
+    description: "Simple video (mp4) to GIF converter.",
+    languages: [
+      { name: "JavaScript", color: "#f1e05a" },
+      { name: "TypeScript", color: "#3178c6" },
+      { name: "CSS", color: "#563d7c" },
+    ],
+    highlight: false,
+  },
+  {
+    name: "dotfiles",
+    description: "Configuration files",
+    languages: [
+      { name: "JavaScript", color: "#f1e05a" },
+      { name: "Shell", color: "#89e051" },
+      { name: "CSS", color: "#563d7c" },
+    ],
+    highlight: false,
+  },
+  {
+    name: "gatsby-ts-storybook",
+    description: "Boilerplate for GatsbyJS using Typescript and Storybook",
+    languages: [
+      { name: "JavaScript", color: "#f1e05a" },
+      { name: "TypeScript", color: "#3178c6" },
+    ],
+    highlight: false,
+  },
+  {
+    name: "workout-log",
+    description: null,
+    languages: [
+      { name: "JavaScript", color: "#f1e05a" },
+      { name: "HTML", color: "#e34c26" },
+      { name: "CSS", color: "#563d7c" },
+      { name: "TypeScript", color: "#3178c6" },
+      { name: "SCSS", color: "#c6538c" },
+    ],
+    highlight: false,
+  },
+];
