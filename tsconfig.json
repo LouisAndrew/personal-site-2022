@@ -7,5 +7,5 @@
     },
     "types": ["vitest/globals"]
   },
-  "include": ["test/**/*.ts", "src/pages/api/**/*.ts", "src/backend/**/*.ts"]
+  "include": ["test/**/*.ts", "src/pages/api/**/*.ts", "src/services/**/*.ts"]
 }

@@ -28,7 +28,7 @@
   {#if projectDetails.collaborators.length > 0}
     <div class="col-span-2 md:col-span-1">
       <h4>Collaborators</h4>
-      <ul>
+      <ul class="list-none pl-0">
         {#each projectDetails.collaborators as collaborator}
           <li class="last:mb-0 mb-2">
             <a
@@ -51,7 +51,7 @@
 
   <div>
     <h4>Languages</h4>
-    <ul>
+    <ul class="list-none pl-0">
       {#each projectDetails.languages as lang}
         <li>
           <Tag color={lang.color}>

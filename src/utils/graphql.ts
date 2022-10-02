@@ -33,11 +33,45 @@ export const projectDetailsQuery = `
   }
 `;
 
-// export const getUserRepositories = gql`
-//   query {
+export const getUserRepositories = `
+  query {
+    search(query: "user:louisandrew", first: 100, type: REPOSITORY) {
+      edges {
+        node {
+          ... on Repository {
+            name
+            description
+            languages(first: 20) {
+              edges {
+                node {
+                  name
+                  color
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
-//   }
-// `
+export const getRepository = `
+  query ($name: String!, $owner: String!) {
+    repository(name: $name, owner: $owner) {
+      name
+      description
+      languages(first: 20) {
+        edges {
+          node {
+            name
+            color
+          }
+        }
+      }
+    }
+  }
+`;
 
 export const searchProjectsQuery = `
   query {
@@ -51,6 +85,24 @@ export const searchProjectsQuery = `
           ... on Repository {
             name
             url
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const getPinnedItems = `
+  query {
+    user(login: "louisandrew") {
+      pinnedItems(first: 6, types: REPOSITORY) {
+        ... on PinnableItemConnection {
+          edges {
+            node {
+              ... on Repository {
+                name
+              }
+            }
           }
         }
       }

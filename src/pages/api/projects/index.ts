@@ -1,30 +1,30 @@
-import type { APIContext } from "astro";
+import {
+  getRepositories,
+  setRepositoryOrder,
+} from "@/services/get-repository-info";
 
-import { getProjectDetails } from "@/backend/get-project-details";
-import { externalProjects } from "@/utils/external";
+const thisProjectKey = "personal-site-2022";
 
-export const get = async (context: APIContext): Promise<Response> => {
-  const { name } = context.params;
-  if (name && typeof name === "string") {
-    const externalProject = externalProjects.find(
-      (external) => external.name === name
-    );
+export const get = async (): Promise<Response> => {
+  try {
+    const repositories = (await getRepositories())
+      .map((repo) => ({
+        ...repo,
+        order: setRepositoryOrder(repo),
+      }))
+      .filter(({ name }) => name !== thisProjectKey);
 
-    const queryString = `${name} in:name user:${
-      externalProject ? externalProject.owner : "louisandrew"
-    }`;
-
-    const projectDetails = await getProjectDetails(queryString, name);
-    if (projectDetails) {
-      return new Response(JSON.stringify(projectDetails), {
+    return new Response(
+      JSON.stringify([...repositories].sort((a, b) => b.order - a.order)),
+      {
         headers: {
           "Content-Type": "application/json",
         },
-      });
-    }
-
-    return new Response(JSON.stringify({ msg: "not found" }), { status: 404 });
+      }
+    );
+  } catch (e) {
+    return new Response(JSON.stringify(e), {
+      status: 400,
+    });
   }
-
-  return new Response(null, { status: 500 });
 };
