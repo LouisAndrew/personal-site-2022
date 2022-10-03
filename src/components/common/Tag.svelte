@@ -20,7 +20,7 @@
 <div
   style:color
   style:background-color={backgroundColor}
-  class="tag px-1 text-sm py-0.5 w-max my-2 brightness-75 dark:brightness-150"
+  class={`tag px-1 text-sm py-0.5 w-max my-2 brightness-75 dark:brightness-150 ${$$restProps.class}`}
 >
   #<slot />
 </div>

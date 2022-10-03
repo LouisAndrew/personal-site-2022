@@ -20,6 +20,7 @@ specifiers:
   eslint-plugin-svelte: 2.8.0
   jsdom: 20.0.0
   ky: 0.31.3
+  node-cache: 5.1.2
   prettier: 2.7.1
   prettier-plugin-astro: 0.5.4
   prettier-plugin-svelte: 2.7.0
@@ -39,6 +40,7 @@ dependencies:
   '@octokit/core': 4.0.5
   astro: 1.2.1
   ky: 0.31.3
+  node-cache: 5.1.2
   showdown: 2.1.0
   svelte: 3.50.1
   svelte-icons: 2.1.0
@@ -1524,6 +1526,11 @@ packages:
 
   /clone/1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
+    engines: {node: '>=0.8'}
+    dev: false
+
+  /clone/2.1.2:
+    resolution: {integrity: sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==}
     engines: {node: '>=0.8'}
     dev: false
 
@@ -3952,6 +3959,13 @@ packages:
     dependencies:
       lower-case: 2.0.2
       tslib: 2.4.0
+    dev: false
+
+  /node-cache/5.1.2:
+    resolution: {integrity: sha512-t1QzWwnk4sjLWaQAS8CHgOJ+RAfmHpxFWmc36IWTiWHQfs0w5JDMBS1b1ZxQteo0vVVuWJvIUKHDkkeK7vIGCg==}
+    engines: {node: '>= 8.0.0'}
+    dependencies:
+      clone: 2.1.2
     dev: false
 
   /node-domexception/1.0.0:
