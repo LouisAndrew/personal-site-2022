@@ -8,6 +8,8 @@ import type {
   RepositoryDetails,
 } from "@/utils/types";
 
+import cache, { KEYS } from "./cache";
+
 type GithubAPIReturnType = {
   repository: RepositoryDetails | null;
 };
@@ -16,6 +18,13 @@ export const getProjectDetails = async (
   owner: string,
   name: string
 ): Promise<ProjectDetails | null> => {
+  const cacheKey = `${KEYS.PROJECT_DETAILS}--${name}--${owner}`;
+
+  const cachedDetails = cache.get<ProjectDetails>(cacheKey);
+  if (cachedDetails) {
+    return cachedDetails;
+  }
+
   try {
     const { repository: repo } = await gql<GithubAPIReturnType>(
       projectDetailsQuery,
@@ -43,13 +52,17 @@ export const getProjectDetails = async (
           )
           .map(({ node }) => node);
 
-        return {
+        const projectDetails = {
           ...repo,
           contentBaseUrl,
           metadata,
           languages,
           collaborators,
         };
+
+        cache.set(cacheKey, projectDetails);
+
+        return projectDetails;
       }
     }
   } catch {
@@ -57,4 +70,9 @@ export const getProjectDetails = async (
   }
 
   return null;
+};
+
+export const clearCachedDetails = async (owner: string, name: string) => {
+  const cacheKey = `${KEYS.PROJECT_DETAILS}--${name}--${owner}`;
+  cache.del(cacheKey);
 };

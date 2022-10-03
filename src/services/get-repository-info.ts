@@ -6,6 +6,7 @@ import {
 } from "@/utils/graphql";
 import type { Edge, GitHubRepositoryInfo, RepositoryInfo } from "@/utils/types";
 
+import cache, { KEYS } from "./cache";
 import { gql } from "./github";
 
 type UserRepositoryInfoQuery = {
@@ -79,18 +80,27 @@ export const getHighlights = async () => {
   }
 };
 
-export const getRepositories = async () => {
+export const getRepositories = async (): Promise<RepositoryInfo[]> => {
+  const cacheKey = KEYS.ALL_REPOS;
+  const cachedRepositoryInfos = cache.get<RepositoryInfo[]>(cacheKey);
+  if (cachedRepositoryInfos) {
+    return cachedRepositoryInfos;
+  }
+
   const repositories = await Promise.all([
     getUserRepositoriesInfo(),
     getExternalRepositoriesInfo(),
   ]);
 
   const highlights = await getHighlights();
-
-  return repositories.flat().map((repo) => ({
+  const repositoryInfos = repositories.flat().map((repo) => ({
     ...repo,
     highlight: highlights.includes(repo.name),
   }));
+
+  cache.set(cacheKey, repositoryInfos);
+
+  return repositoryInfos;
 };
 
 export const setRepositoryOrder = (repo: RepositoryInfo) => {
@@ -103,4 +113,9 @@ export const setRepositoryOrder = (repo: RepositoryInfo) => {
   }
 
   return 1;
+};
+
+export const clearCachedRepositories = () => {
+  const cacheKey = KEYS.ALL_REPOS;
+  cache.del(cacheKey);
 };
