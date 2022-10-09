@@ -2,14 +2,16 @@
 import Card from "@/components/project-info/Card.svelte";
 import Layout from "@/layouts/Layout.astro";
 import { agent } from "@/utils/agent";
+import { groupProjects } from "@/utils/projects";
 import type { RepositoryInfo } from "@/utils/types";
 
 const baseUrl = `${Astro.url.origin}`;
 const url = `${baseUrl}/api/projects`;
 
 const repos: RepositoryInfo[] = await agent.get(url).json();
-const highlights = repos.filter((repo) => repo.highlight);
-const others = repos.filter((repo) => !repo.highlight);
+
+// ! Projects without descriptions are hidden for now
+const { highlights, additional } = groupProjects(repos);
 
 const thisProjectInfo: RepositoryInfo = {
   description:
@@ -45,14 +47,14 @@ const thisProjectInfo: RepositoryInfo = {
       }
     </div>
 
-    <h2>Other projects</h2>
+    <h2>Additional projects</h2>
     <p>
       These are the additional projects I were working on. These projects are
       often experimental and act as a way for me to learn new things.
     </p>
     <div class="projects-grid">
       {
-        others.map((repo) => (
+        additional.map((repo) => (
           <a href={`${baseUrl}/projects/${repo.name}`}>
             <Card repositoryInfo={repo} />
           </a>

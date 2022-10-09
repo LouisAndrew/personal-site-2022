@@ -15,10 +15,16 @@
   `}
 >
   <div class="col-span-2 md:col-span-1">
-    <a class="highlight mb-2" href={projectDetails.homepageUrl} target="_blank">
-      <IoLogoGithub />
-      Visit project
-    </a>
+    {#if projectDetails.homepageUrl}
+      <a
+        class="highlight mb-2"
+        href={projectDetails.homepageUrl}
+        target="_blank"
+      >
+        <IoLogoGithub />
+        Visit project
+      </a>
+    {/if}
     <a class="highlight" href={projectDetails.url} target="_blank">
       <IoLogoGithub />
       Visit GitHub repository
