@@ -23,7 +23,12 @@ try {
     projectDetails && (
       <div>
         <Hero projectDetails={projectDetails} />
-        <Image client:load projectDetails={projectDetails} />
+        <Image
+          client:load
+          bgStyles="h-[200px] md:h-[400px] lg:h-[550px] xl:h-[800px]"
+          src={projectDetails.metadata?.assets.previewImage}
+          alt={`${projectDetails.name} homepage`}
+        />
         <div class="w-full grid grid-cols-2 md:grid-cols-6 flex-col-reverse lg:flex-row items-start justify-between">
           <Details client:load projectDetails={projectDetails} />
           <Sidebar projectDetails={projectDetails} />

@@ -21,6 +21,7 @@
     "node-cache": "5.1.2",
     "showdown": "2.1.0",
     "svelte": "^3.46.4",
+    "svelte-drawer-component": "1.2.2",
     "svelte-icons": "2.1.0"
   },
   "devDependencies": {

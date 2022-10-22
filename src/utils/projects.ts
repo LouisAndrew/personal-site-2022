@@ -9,7 +9,6 @@ type ProjectGroups = {
 export const groupProjects = (projects: RepositoryInfo[]): ProjectGroups =>
   projects.reduce(
     (prev: ProjectGroups, current) => {
-      console.log(current);
       if (current.highlight) {
         return {
           ...prev,

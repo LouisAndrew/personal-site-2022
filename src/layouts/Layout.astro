@@ -1,10 +1,18 @@
 ---
+import Drawer from "@/components/common/Drawer/Drawer.svelte";
 import Header from "@/components/common/Header.svelte";
+import Navbar from "@/components/common/Navbar.svelte";
+import Theme from "@/components/common/Theme.svelte";
+import { agent } from "@/utils/agent";
 export interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
+
+const { avatarUrl } = await agent
+  .get(`${Astro.url.origin}/api/avatar`)
+  .json<{ avatarUrl: string }>();
 ---
 
 <!DOCTYPE html>
@@ -121,15 +129,68 @@ const { title } = Astro.props;
             @apply py-2 overflow-hidden;
           }
         }
+
+        .navbar {
+          @apply grid-cols-1;
+          @screen md {
+            grid-template-columns: repeat(3, auto);
+          }
+        }
+      }
+
+      #toggle {
+        @apply h-6 w-6 fill-gray-900 dark:fill-slate-300;
+
+        #top,
+        #bot {
+          @apply duration-300;
+        }
+
+        #mid {
+          @apply duration-500;
+        }
+      }
+
+      [data-open="true"] #toggle {
+        #top {
+          transform: rotate(45deg) scale(1.2) translate(10%, -10%);
+        }
+        #mid {
+          opacity: 0;
+        }
+        #bot {
+          transform: rotate(-45deg) scale(1.2) translate(-60%, -20%);
+        }
+      }
+
+      .drawer {
+        .navbar {
+          @apply opacity-0 duration-500 delay-150;
+        }
+      }
+
+      .drawer.open {
+        .navbar {
+          @apply opacity-100;
+        }
       }
     </style>
   </head>
   <body>
-    <main class="bg-white dark:bg-zinc-800">
+    <main class="bg-white dark:bg-zinc-800 relative">
       <div
-        class="w-full max-w-sm md:max-w-2xl lg:max-w-4xl xl:max-w-7xl py-12 px-8"
+        class="w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl py-12 px-8 overflow-x-hidden"
       >
-        <Header client:only />
+        <Header avatarUrl={avatarUrl}>
+          <Navbar class="hidden md:grid">
+            <Theme client:only="svelte" />
+          </Navbar>
+          <Drawer client:only>
+            <Navbar>
+              <Theme client:only="svelte" />
+            </Navbar>
+          </Drawer>
+        </Header>
         <slot />
       </div>
     </main>

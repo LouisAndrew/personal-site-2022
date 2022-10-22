@@ -1,23 +1,13 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  let darkMode = true;
+  import Image from "@/components/projects/Image.svelte";
 
-  const toggleDarkMode = (useDark: boolean) => {
-    const body = document.body;
-    if (useDark) {
-      body.classList.add("dark");
-    } else {
-      body.classList.remove("dark");
-    }
-  };
-
-  $: {
-    toggleDarkMode(darkMode);
-  }
-
-  onMount(() => toggleDarkMode(darkMode));
+  export let avatarUrl: string;
 </script>
 
-<div class="header">
-  <button on:click={() => (darkMode = !darkMode)}> Toggle </button>
+<div class="header flex justify-between mb-12">
+  <div class="avatar w-12 h-12 rounded-full overflow-hidden">
+    <Image src={avatarUrl} />
+  </div>
+
+  <slot />
 </div>

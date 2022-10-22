@@ -1,3 +1,5 @@
+import { gql } from "@/services/github";
+
 export const projectDetailsQuery = `
   query ($name: String!, $owner: String!) {
     repository(name: $name, owner: $owner) {
@@ -106,6 +108,14 @@ export const getPinnedItems = `
           }
         }
       }
+    }
+  }
+`;
+
+export const getAvatarUrl = `
+  query {
+    user(login: "louisandrew") {
+      avatarUrl
     }
   }
 `;

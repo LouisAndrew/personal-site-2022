@@ -34,13 +34,13 @@ const thisProjectInfo: RepositoryInfo = {
     <div class="projects-grid mb-20">
       <a
         class="col-span-1 sm:col-span-2 lg:col-span-3"
-        href={`${baseUrl}/projects/this-project`}
+        href={`/projects/this-project`}
       >
         <Card repositoryInfo={thisProjectInfo} />
       </a>
       {
         highlights.map((repo) => (
-          <a href={`${baseUrl}/projects/${repo.name}`}>
+          <a href={`/projects/${repo.name}`}>
             <Card repositoryInfo={repo} />
           </a>
         ))
