@@ -26,6 +26,7 @@ specifiers:
   prettier-plugin-svelte: 2.7.0
   showdown: 2.1.0
   svelte: ^3.46.4
+  svelte-drawer-component: 1.2.2
   svelte-eslint-parser: 0.18.2
   svelte-icons: 2.1.0
   svelte-preprocess: 4.10.7
@@ -43,6 +44,7 @@ dependencies:
   node-cache: 5.1.2
   showdown: 2.1.0
   svelte: 3.50.1
+  svelte-drawer-component: 1.2.2
   svelte-icons: 2.1.0
 
 devDependencies:
@@ -4943,6 +4945,10 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  /svelte-drawer-component/1.2.2:
+    resolution: {integrity: sha512-FyVaqwydJZfO266ERLbSsn9WojXwC5Mhc2pTOoZPTHcYopCdnINw+vKPuDnb/2osLEbDNnCE/2+MSgJsR9r56Q==}
+    dev: false
 
   /svelte-eslint-parser/0.18.2_svelte@3.50.1:
     resolution: {integrity: sha512-8zLD1u176i001zCQ3lBaK1G8s8/2LTiUZBPEzKjDsf0pXlHKThWrfahLh6EF7lQ3MxcV4IJRESC1qjkHRMe+KQ==}

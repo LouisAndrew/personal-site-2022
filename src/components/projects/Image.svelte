@@ -3,9 +3,10 @@
   import IoMdImages from "svelte-icons/io/IoMdImages.svelte";
 
   import { onMount } from "svelte";
-  export let projectDetails: ProjectDetails;
+  export let src: string = "";
+  export let alt: string = "";
 
-  const src = projectDetails.metadata?.assets.previewImage || "";
+  export let bgStyles = "";
 
   let loading = false;
   let failed = false;
@@ -17,7 +18,7 @@
     loading = true;
 
     img.onload = () => {
-      loading = false;
+      // loading = false;
       opacity = 1;
     };
 
@@ -30,15 +31,10 @@
 
 <div class={`w-full mb-8 ${loading && "animate-pulse"}`}>
   {#if !loading && !failed}
-    <img
-      class="duration-300"
-      style:opacity
-      {src}
-      alt={`${projectDetails.name} homepage`}
-    />
+    <img class="duration-300" style:opacity {src} {alt} />
   {:else}
     <div
-      class="duration-200 text-sm md:text-base px-4 md:px-0 w-full h-[200px] md:h-[400px] lg:h-[550px] xl:h-[800px] bg-gray-200 dark:bg-gray-700 flex justify-center items-center text-gray-400"
+      class={`duration-200 text-sm md:text-base px-4 md:px-0 w-full bg-gray-200 dark:bg-gray-700 flex justify-center items-center text-gray-400 ${bgStyles}`}
     >
       {#if failed}
         <div class="w-10 h-10 mr-4">
