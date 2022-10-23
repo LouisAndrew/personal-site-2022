@@ -75,7 +75,7 @@
     {#if tags}
       <div>
         <h4>Tags</h4>
-        <ul>
+        <ul class="list-none pl-0">
           {#each tags as tag}
             <li>
               <Tag color="#38bdf8">

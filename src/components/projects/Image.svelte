@@ -18,7 +18,7 @@
     loading = true;
 
     img.onload = () => {
-      // loading = false;
+      loading = false;
       opacity = 1;
     };
 

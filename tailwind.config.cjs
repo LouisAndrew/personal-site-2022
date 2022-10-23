@@ -13,6 +13,12 @@ module.exports = {
       listStyleType: {
         square: "square",
       },
+      colors: {
+        secondary: {
+          dark: "#202025",
+          light: "#fbfcfd",
+        },
+      },
     },
   },
   plugins: [],
