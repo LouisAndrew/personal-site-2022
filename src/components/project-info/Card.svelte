@@ -8,7 +8,7 @@
 
 <div class="highlight p-1 rounded w-full h-full">
   <div
-    class="card h-full w-full grid gap-y-4 bg-[#fbfcfd] dark:bg-[#202025] border border-solid dark:border-zinc-700 p-5 rounded"
+    class="card h-full w-full grid gap-y-4 bg-secondary-light dark:bg-secondary-dark border border-solid dark:border-zinc-700 p-5 rounded"
   >
     <div class="flex items-center">
       <h3 class="mt-0">{repositoryInfo.name}</h3>

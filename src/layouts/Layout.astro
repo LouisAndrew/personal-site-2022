@@ -1,5 +1,6 @@
 ---
 import Drawer from "@/components/common/Drawer/Drawer.svelte";
+import Footer from "@/components/common/Footer.svelte";
 import Header from "@/components/common/Header.svelte";
 import Navbar from "@/components/common/Navbar.svelte";
 import Theme from "@/components/common/Theme.svelte";
@@ -135,6 +136,14 @@ const { avatarUrl } = await agent
           @screen md {
             grid-template-columns: repeat(3, auto);
           }
+
+          li {
+            @apply text-gray-800 hover:text-gray-900 dark:text-slate-400 hover:dark:text-slate-300;
+          }
+        }
+
+        .container {
+          @apply w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl;
         }
       }
 
@@ -174,13 +183,15 @@ const { avatarUrl } = await agent
           @apply opacity-100;
         }
       }
+
+      .footer-content {
+        grid-template-columns: auto auto 1fr auto auto;
+      }
     </style>
   </head>
-  <body>
+  <body class="overflow-x-hidden w-screen">
     <main class="bg-white dark:bg-zinc-800 relative">
-      <div
-        class="w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl py-12 px-8 overflow-x-hidden"
-      >
+      <div class="container py-12 px-8">
         <Header avatarUrl={avatarUrl}>
           <Navbar class="hidden md:grid">
             <Theme client:only="svelte" />
@@ -194,5 +205,6 @@ const { avatarUrl } = await agent
         <slot />
       </div>
     </main>
+    <Footer />
   </body>
 </html>
