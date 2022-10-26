@@ -3,7 +3,7 @@ import type { RepositoryInfo } from "./types";
 type ProjectGroups = {
   highlights: RepositoryInfo[];
   additional: RepositoryInfo[];
-  others: RepositoryInfo[];
+  hidden: RepositoryInfo[];
 };
 
 export const groupProjects = (projects: RepositoryInfo[]): ProjectGroups =>
@@ -25,12 +25,12 @@ export const groupProjects = (projects: RepositoryInfo[]): ProjectGroups =>
 
       return {
         ...prev,
-        others: [...prev.others, current],
+        others: [...prev.hidden, current],
       };
     },
     {
       highlights: [],
       additional: [],
-      others: [],
+      hidden: [],
     }
   );

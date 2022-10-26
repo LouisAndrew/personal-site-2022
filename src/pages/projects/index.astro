@@ -11,7 +11,7 @@ const url = `${baseUrl}/api/projects`;
 const repos: RepositoryInfo[] = await agent.get(url).json();
 
 // ! Projects without descriptions are hidden for now
-const { highlights, additional } = groupProjects(repos);
+const { highlights, additional, hidden } = groupProjects(repos);
 
 const thisProjectInfo: RepositoryInfo = {
   description:
@@ -31,7 +31,7 @@ const thisProjectInfo: RepositoryInfo = {
       These projects are some of the projects that I want to particularly
       showcase
     </p>
-    <div class="projects-grid mb-20">
+    <div class="projects-grid">
       <a
         class="col-span-1 sm:col-span-2 lg:col-span-3"
         href={`/projects/this-project`}
@@ -61,11 +61,19 @@ const thisProjectInfo: RepositoryInfo = {
         ))
       }
     </div>
+
+    <h2>Hidden projects</h2>
+    <p>
+      The projects from my GitHub profile that don't contain any description are
+      hidden by default to prevent too much projects being displayed in this
+      page. The hidden projects are usually projects that're used as a way for
+      me to explore and learn new things.
+    </p>
   </div>
 </Layout>
 
 <style scoped lang="postcss">
   .projects-grid {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-3 mb-20;
   }
 </style>
